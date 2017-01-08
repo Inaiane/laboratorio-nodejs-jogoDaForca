@@ -1,0 +1,16 @@
+extends layout
+
+block content
+    h1 Jogo da Forca
+    section.col-lg-12
+        form.form
+            if(validaLetra)
+                each  let, i in palavra
+                    if(let === letra)  
+                        input.form-control2#inputLetra(type="text" name="let" value="#{letra}")
+                    else
+                        input.form-control2#inputLetra(type="text" name="let" value="")
+            else
+                each  let, i in palavra
+                    input.form-control2#inputLetra(type="text" name="let" value="")
+                h4.text-center A palavra não possui essa letra

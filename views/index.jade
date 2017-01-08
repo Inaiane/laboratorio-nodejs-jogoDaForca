@@ -1,0 +1,37 @@
+extends layout
+block content
+    .col-lg-12
+        h1.text-center Jogo da Forca
+        .text-center
+            a.btn.btn-primary(name="edit" href="/jogo/iniciar") Iniciar
+
+        section
+            if(typeof palavra !== "undefined")
+                .col-lg-7
+                    .panel-body
+                        form.form-inline(name="form" action="/jogo/validaLetra" method="post")
+                            .form-group
+                                label.sr-only
+                                    Informe uma letra:
+                                input.form-control#letra(name="letra" type="text")
+                                button.btn.btn-primary(type="submit") OK
+
+                        form.form
+
+                            each  let, i in listaLetras
+                                if(let.valida === true)
+                                    input.form-control2#inputLetra(type="text" name="let" value="#{let.letra}")
+                                else
+                                    input.form-control2#inputLetra(type="text" name="let" value="" disabled)
+
+                            if(typeof letraValida !== "undefined" && letraValida === false)
+                                h4.text-center Letra incorreta!
+                            if(typeof dica !== "undefined" && dica !== "")
+                                h4.text-center #{dica}
+                            if(mensagem === 2)
+                                h4.text-center Parabéns Você ganhou o Jogo
+                            if(mensagem === 1)
+                                h4.text-center Fim do Jogo
+                .col-lg-5
+                    .panel-body
+                        img.img-responsive(src="#{imagem}")
